@@ -6,10 +6,8 @@
               <div class="col-md-10">
                 <h3>List of all restaurants</h3>
             </div>
-            <div class="col-sm-2">
-                <a class="btn btn-sm btn-success" href="{{ route('restaurants.create') }}">Create New restaurant</a>
-            </div>
         </div>
+
  
         @if ($message = Session::get('success'))
         <div class="alert alert-success">
@@ -65,6 +63,7 @@
             <td>{{$user->phonenumber}}</td>
             <td>
             <form action="{{ route('profile.destroy', $user->id) }}" method="post">
+                <a class="btn btn-sm btn-primary" href="{{route('orders')}}">Orders</a>
                 <a class="btn btn-sm btn-warning" href="{{route('profile.edit',$user->id)}}">Edit</a>
                 @csrf
                 @method('DELETE')

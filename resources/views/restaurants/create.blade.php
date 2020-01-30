@@ -48,11 +48,11 @@
   </div>
     <div class="col-md-12">
       <strong>open :</strong>
-      <input type="text" name="open" class="form-control" value="{{ old('open')}}" placeholder="open">
+      <input type="text" name="is_open" class="form-control" value="{{ old('is_open')}}" placeholder="open">
   </div>
     <div class="col-md-12">
       <strong>close :</strong>
-      <input type="text" name="close" class="form-control" value="{{ old('close')}}" placeholder="close">
+      <input type="text" name="is_closed" class="form-control" value="{{ old('is_closed')}}" placeholder="close">
   </div>
   <div class="col-md-12">
       <strong>email :</strong>

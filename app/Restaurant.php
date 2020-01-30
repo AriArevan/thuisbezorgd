@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Restaurant extends Model
 {
     protected $fillable = [
-        'title', 'kvk', 'email', 'address', 'zipcode', 'city', 'phone', 'photo', 'image', 'open', 'close',
+        'title', 'kvk', 'email', 'address', 'zipcode', 'city', 'phone', 'photo', 'image', 'is_open', 'is_closed',
     ];
 
     public function orders()
@@ -25,8 +25,4 @@ class Restaurant extends Model
         return $this->belongsTo('App\User');
     }
     
-    public function openingtimes()
-    {
-        return $this->hasOne('App\openingtime');
-    }
 }

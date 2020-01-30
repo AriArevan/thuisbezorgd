@@ -24,9 +24,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Restaurant $restaurant)
     {
         $restaurants = Restaurant::all();
+
+/*        $restaurants = Restaurant::where('is_open', '<', date('H:i:s'))         ->where('is_closed', '>', date('H:i:s'))->get();*/
 
         return view('home', compact('restaurants'));
     }

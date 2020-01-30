@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10">
-      <h3>Edit restaurant</h3>
+      <h3>Edit consumable</h3>
       <div class="col-sm-2">
       <h2><a class="btn btn-sm btn-primary" href="{{route('consumables.create')}}">Add consumables</a></h2>
     </div>

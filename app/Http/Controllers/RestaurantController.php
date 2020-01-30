@@ -13,7 +13,7 @@ class RestaurantController extends Controller
 {
     public function index()
     {
-        $restaurants = Restaurant::first();
+        $restaurants = Restaurant::all();
         return view('restaurants.index', compact('restaurants'));
                   
     }
@@ -37,9 +37,9 @@ class RestaurantController extends Controller
           'zipcode' => 'required',
           'city' => 'required',
           'phone' => 'required',
-          'open' => 'required',
+          'is_open' => 'required',
           'photo' => 'required',
-          'close' => 'required',
+          'is_closed' => 'required',
           'email' => 'required',
         ]);
 
@@ -56,8 +56,8 @@ class RestaurantController extends Controller
         $restaurant->city = $request->city;
         $restaurant->phone = $request->phone;
         $restaurant->photo = $request->photo;
-        $restaurant->open = $request->open;
-        $restaurant->close = $request->close;
+        $restaurant->is_open = $request->is_open;
+        $restaurant->is_closed = $request->is_closed;
         $restaurant->email = $request->email;
         $restaurant->user_id = Auth::id();
         $restaurant->save();
@@ -119,8 +119,8 @@ class RestaurantController extends Controller
           'zipcode' => 'required',
           'city' => 'required',
           'phone' => 'required',
-          'open' => 'required',
-          'close' => 'required',
+          'is_open' => 'required',
+          'is_closed' => 'required',
           'email' => 'required',
       ]);
       $restaurant = Restaurant::find($id);
@@ -130,8 +130,8 @@ class RestaurantController extends Controller
       $restaurant->zipcode = $request->get('zipcode');
       $restaurant->city = $request->get('city');
       $restaurant->phone = $request->get('phone');
-      $restaurant->open = $request->get('open');
-      $restaurant->close = $request->get('close');
+      $restaurant->is_open = $request->get('open');
+      $restaurant->is_close = $request->get('close');
       $restaurant->email = $request->get('email');
       $restaurant->save();
       return redirect()->route('restaurants.index')
@@ -148,6 +148,6 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::find($id);
         $restaurant->delete();
         return redirect()->route('restaurants.index')
-                        ->with('success', 'Biodata siswa deleted successfully');
+                        ->with('success', 'Restaurant deleted successfully');
     }
 }

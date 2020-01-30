@@ -61,10 +61,14 @@
                                     </a>
                                     <a class="dropdown-item" href="{{URL::to('profile')}}/{{Auth::user()->id}}/edit">Edit Account</a>
 
-                                    <a class="dropdown-item" href="{{ route('restaurants.index')}}">My restaurants</a>
+                                    <a class="dropdown-item" href="{{ route('ordersshow')}}">My orders</a>
+
+{{--                                     <a class="dropdown-item" href="{{ route('restaurants.index')}}">My restaurants</a>
+ --}}
                                     @if(Auth::user()->is_admin == 1)
                                     <a class="dropdown-item" href="{{ route('admin.index')}}">Admin Panel</a>
                                     @endif
+                                    
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

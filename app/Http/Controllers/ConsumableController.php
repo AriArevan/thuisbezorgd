@@ -8,6 +8,7 @@ use User;
 use App\Consumable;
 use App\Restaurant;
 use Illuminate\Http\Request;
+use App\Order;
 
 class ConsumableController extends Controller
 {
@@ -78,6 +79,7 @@ class ConsumableController extends Controller
         $consumable = Consumable::with('consumables')->find($id);
         return view('consumables.show', compact('consumable'));
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -89,6 +91,7 @@ class ConsumableController extends Controller
         $consumables = Consumable::find($id);
         return view('consumables.edit', compact('consumable', 'consumables'));
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -106,7 +109,7 @@ class ConsumableController extends Controller
         ]);
 
 /*        $consumable = Consumable::find($id);
-*/        $consumable->title = $request->get('title');
+*/      $consumable->title = $request->get('title');
         $consumable->category = $request->get('category');
         $consumable->photo = $request->get('photo');
         $consumable->price = $request->get('price');
@@ -123,8 +126,34 @@ class ConsumableController extends Controller
      */
     public function destroy(Consumable $consumable)
     {
-        // Destroy the consumable with the given ID
         Consumable::destroy($consumable->id);
         return redirect()->back();
+    }
+
+    public function addToCart($id)
+    {
+        session()->push('consumables', $id);
+        $name = Consumable::where('id', $id)->get()[0]['title'];
+        return $name;
+    }
+
+     public function pay($restaurant_id) {
+        $items = session()->get('consumable') ?: [];
+
+ 
+
+        $order = new Order();
+        $order->user_id = Auth::id();
+        $order->restaurant_id = $restaurant_id;
+        $order->save();
+
+ 
+        foreach ($items as $item) {
+            $order->consumables()->attach($item);
+        }
+
+ 
+
+        return redirect()->route('ordersshow');
     }
 }

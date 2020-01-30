@@ -8,9 +8,18 @@ use Auth;
 use Image;
 use File;
 use Redirect;
+use App\Order;
 
 class UserController extends Controller
 {
+    public function index()
+    {
+          $orders = Order::all();
+
+
+             return view('users.show')
+                 ->with('orders', $orders);
+    }
 
 	public function edit(User $user, $id)
     {

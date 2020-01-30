@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConsumableOrderTable extends Migration
+class CreateConsumableOrder extends Migration
 {
     /**
      * Run the migrations.
@@ -15,6 +15,8 @@ class CreateConsumableOrderTable extends Migration
     {
         Schema::create('consumable_order', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('consumable_id')->unsigned();
+            $table->bigInteger('order_id')->unsigned();
             $table->timestamps();
         });
     }

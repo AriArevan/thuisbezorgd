@@ -21,9 +21,9 @@ class CreateRestaurantsTable extends Migration
             $table->string('zipcode');
             $table->string('city');
             $table->integer('phone');
-            $table->string('open');
+            $table->time('is_open')->nullable();             
+            $table->time('is_closed')->nullable();            
             $table->string('photo');
-            $table->string('close');
             $table->string('email')->unique();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
